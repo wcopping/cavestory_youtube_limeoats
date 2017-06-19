@@ -1,5 +1,5 @@
 CC = g++
-OBJECTS = main.cpp graphics.cpp game.cpp
+OBJECTS = main.cpp graphics.cpp game.cpp input.cpp
 OBJECT_NAME = main.out
 INC1 = /home/wyatt/Projects/cavestory_youtube_limeoats/header
 INCDIRS = -I$(INC1)
