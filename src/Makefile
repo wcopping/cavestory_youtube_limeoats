@@ -1,9 +1,11 @@
 CC = g++
-OBJECTS = main.cpp graphics.cpp game.cpp input.cpp
+OBJECTS = main.cpp graphics.cpp game.cpp input.cpp sprite.cpp
 OBJECT_NAME = main.out
 INC1 = /home/wyatt/Projects/cavestory_youtube_limeoats/header
-INCDIRS = -I$(INC1)
-CFLAGS = -Wall -Werror $(INCDIRS) $(shell pkg-config --cflags --libs sdl2)
+INC2 = /usr/include/SDL2
+INCDIRS = -I$(INC1) -I$(INC2)
+CFLAGS = -Wall -Werror $(INCDIRS) 
+#$(shell pkg-config --cflags --libs sdl2)
 
 all:
 	$(CC) $(OBJECTS) $(CFLAGS) -o $(OBJECT_NAME); ./$(OBJECT_NAME)

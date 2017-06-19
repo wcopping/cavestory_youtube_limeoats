@@ -1,2 +1,2 @@
--I/usr/include/SDL2
+$(shell pkg-config --cflags --libs sdl2)
 -I../header
