@@ -22,7 +22,7 @@ Game::Game()
 
 Game::~Game()
 {
-
+  ;
 }
 
 void Game::gameLoop()
@@ -30,7 +30,8 @@ void Game::gameLoop()
   Graphics graphics;
   Input input;
   SDL_Event event;
-  this->_player = Sprite(graphics, "content/sprites/myChar.png", 0, 0, 16, 16, 100, 100);
+
+  this->_player = Sprite(graphics, "/home/wyatt/Projects/cavestory_youtube_limeoats/content/sprites/MyChar.png", 0, 0, 16, 16, 100, 100);
 
   int LAST_UPDATE_TIME = SDL_GetTicks();
   // Start the game loop
@@ -74,5 +75,5 @@ void Game::draw(Graphics &graphics)
 
 void Game::update(float elapsedTime)
 {
-
+  ;
 }

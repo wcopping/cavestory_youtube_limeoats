@@ -1,8 +1,12 @@
 #include "sprite.h"
 #include "graphics.h"
+#include <iostream>
 
 
-Sprite::Sprite() {}
+Sprite::Sprite()
+{
+  ;
+}
 
 Sprite::Sprite(Graphics &graphics, const std::string &filePath, int sourceX,
           int sourceY, int width, int height, float posX, float posY) :
@@ -20,12 +24,18 @@ Sprite::Sprite(Graphics &graphics, const std::string &filePath, int sourceX,
   }
 }
 
-Sprite::~Sprite() {}
+Sprite::~Sprite() 
+{
+  ;
+}
 
 void Sprite::draw(Graphics &graphics, int x, int y)
 {
-  SDL_Rect destinationRectangle = {x, y, this->_sourceRect.w, this->_sourceRect.h };
-  graphics.blitSurface(this->_spriteSheet, this->_sourceRect, destinationRectangle);
+  SDL_Rect destinationRectangle = { x, y, this->_sourceRect.w, this->_sourceRect.h };
+  graphics.blitSurface(this->_spriteSheet, &this->_sourceRect, &destinationRectangle);
 }
 
-void Sprite::update() {}
+void Sprite::update() 
+{
+  ;
+}

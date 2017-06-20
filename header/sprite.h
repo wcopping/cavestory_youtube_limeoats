@@ -5,10 +5,11 @@
 #include <string>
 
 class Graphics;
+
 /* Sprite class
  * Holds all the information for individual sprites
  */
-class Sprite()
+class Sprite
 {
 public:
   Sprite();
