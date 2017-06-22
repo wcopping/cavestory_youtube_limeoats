@@ -1,5 +1,5 @@
 CC = g++
-OBJECTS = main.cpp graphics.cpp game.cpp input.cpp sprite.cpp animatedsprite.cpp player.cpp level.cpp
+OBJECTS = main.cpp graphics.cpp game.cpp input.cpp sprite.cpp animatedsprite.cpp player.cpp level.cpp tinyxml2.cpp
 OBJECT_NAME = main.out
 INC1 = /home/wyatt/Projects/cavestory_youtube_limeoats/header
 #INC2 = /usr/include/SDL2
