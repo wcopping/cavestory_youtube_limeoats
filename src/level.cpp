@@ -9,6 +9,7 @@
 #include <sstream>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 using namespace tinyxml2;
 
@@ -29,7 +30,7 @@ void Level::loadMap(std::string mapName, Graphics &graphics)
   // Parse the .tmx file
   XMLDocument doc;
   std::stringstream ss;
-  ss << "../content/maps/" << mapName << ".tmx"; // Pass in Map 1, we get /content/maps/map_1.tmx
+  ss << "../content/maps/" << mapName << ".tmx"; // Pass in map_1, we get /content/maps/map_1.tmx
   doc.LoadFile(ss.str().c_str());
 
   XMLElement* mapNode = doc.FirstChildElement("map");
@@ -147,6 +148,57 @@ void Level::loadMap(std::string mapName, Graphics &graphics)
       pLayer = pLayer->NextSiblingElement("layer");
     }
   }
+
+  // Parse out the collision
+  XMLElement* pObjectGroup = mapNode->FirstChildElement("objectgroup");
+  if (pObjectGroup != NULL) {
+    while (pObjectGroup) {
+      const char* name = pObjectGroup->Attribute("name");
+      std::stringstream ss;
+      ss << name;
+      if (ss.str() == "collisions") {
+        XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+        if (pObject != NULL) {
+          while (pObject) {
+            float x, y, width, height;
+            x = pObject->FloatAttribute("x");
+            y = pObject->FloatAttribute("y");
+            width = pObject->FloatAttribute("width");
+            height = pObject->FloatAttribute("height");
+            this->_collisionRects.push_back(Rectangle(
+                  std::ceil(x) * globals::SPRITE_SCALE,
+                  std::ceil(y) * globals::SPRITE_SCALE,
+                  std::ceil(width) * globals::SPRITE_SCALE,
+                  std::ceil(height) * globals::SPRITE_SCALE
+            ));
+
+            pObject = pObject->NextSiblingElement("object");
+          }
+        }
+      }
+      // Other objectgroups go here with an else if (ss.str() == "whatever")
+      else if (ss.str() == "spawn points") {
+        XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+        if (pObject != NULL) {
+          while (pObject) {
+            float x = pObject->FloatAttribute("x");
+            float y = pObject->FloatAttribute("y");
+            const char* name = pObject->Attribute("name");
+            std::stringstream ss;
+            ss << name;
+            if (ss.str() == "player") {
+              this->_spawnPoint = Vector2(std::ceil(x) * globals::SPRITE_SCALE,
+                  std::ceil(y) * globals::SPRITE_SCALE);
+            }
+
+            pObject = pObject->NextSiblingElement("object");
+          }
+        }
+      }
+
+      pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
+    }
+  }
 }
 
 void Level::update(int elapsedTime) {}
@@ -158,8 +210,21 @@ void Level::draw(Graphics &graphics)
   }
 }
 
+std::vector<Rectangle> Level::checkTileCollisions(const Rectangle &other)
+{
+  std::vector<Rectangle> others;
+  for (int i = 0; i < static_cast<int>(this->_collisionRects.size()); i++) {
+    if (this->_collisionRects.at(i).collidesWith(other)) {
+      others.push_back(this->_collisionRects.at(i));
+    }
+  }
+  return others;
+}
 
-
+const Vector2 Level::getPlayerSpawnPoint() const
+{
+  return this->_spawnPoint;
+}
 
 
 
