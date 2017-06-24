@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0"  orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="16" tileheight="16" nextobjectid="17">
  <tileset firstgid="1" name="PrtCave" tilewidth="16" tileheight="16" tilecount="80" columns="16">
-  <image source="../tilesets/PrtCave.png" width="256" height="80"/>
+  <image source="../content/tilesets/PrtCave.png" width="256" height="80"/>
  </tileset>
  <layer name="background" width="20" height="16">
   <data>
@@ -655,13 +655,18 @@
   <object id="1" x="144.25" y="16.125" width="15.75" height="16.25"/>
   <object id="2" x="144.25" y="64.125" width="15.375" height="15.75"/>
   <object id="3" x="112.25" y="79.875" width="79.5" height="16"/>
-  <object id="4" x="64.1818" y="48" width="16.1818" height="95.8182"/>
-  <object id="5" x="79.8182" y="127.818" width="32.3636" height="16.1818"/>
-  <object id="6" x="128.182" y="144" width="47.8182" height="15.4545"/>
-  <object id="7" x="96.3636" y="143.455" width="16.1818" height="64.5455"/>
-  <object id="8" x="192.364" y="143.818" width="15.4545" height="16.1818"/>
   <object id="9" x="208.364" y="128.182" width="31.4545" height="15.4545"/>
-  <object id="10" x="112.545" y="191.818" width="95.8182" height="16.1818"/>
   <object id="11" x="239.636" y="94.7273" width="16.9091" height="33.0909"/>
+  <object id="7" x="64" y="48" width="16" height="96"/>
+  <object id="8" x="80" y="128" width="32" height="16"/>
+  <object id="9" x="96" y="144" width="16" height="64"/>
+  <object id="10" x="112" y="192" width="112" height="16"/>
+  <object id="12" x="208" y="144" width="16" height="48"/>
+  <object id="16" x="128" y="144" width="48" height="16"/>
+ </objectgroup>
+ <objectgroup color="#55ff00" name="spawn points">
+  <object id="1" name="player" x="150" y="127" width="5" height="5.66667">
+   <ellipse/>
+  </object>
  </objectgroup>
 </map>
