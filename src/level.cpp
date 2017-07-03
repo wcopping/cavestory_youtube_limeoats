@@ -30,7 +30,7 @@ void Level::loadMap(std::string mapName, Graphics &graphics)
   // Parse the .tmx file
   XMLDocument doc;
   std::stringstream ss;
-  ss << "../content/maps/" << mapName << ".tmx"; // Pass in map_1, we get /content/maps/map_1.tmx
+  ss << "/home/wyatt/Projects/cavestory_youtube_limeoats/content/maps/" << mapName << ".tmx"; // Pass in map_1, we get /content/maps/map_1.tmx
   doc.LoadFile(ss.str().c_str());
 
   XMLElement* mapNode = doc.FirstChildElement("map");
@@ -125,6 +125,8 @@ void Level::loadMap(std::string mapName, Graphics &graphics)
               // Calculate the position of the tile in the tileset
               int tilesetWidth, tilesetHeight;
               SDL_QueryTexture(tls.Texture, NULL, NULL, &tilesetWidth, &tilesetHeight);
+              std::cout << tilesetWidth << std::endl;
+              std::cout << tilesetHeight << std::endl;
               int tsxx = gid % (tilesetWidth / tileWidth) - 1;
               tsxx *= tileWidth;
               int tsyy = 0;
